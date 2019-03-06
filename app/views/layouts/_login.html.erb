@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">BLOG</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Home',home_show_path%></li>
+          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+          <li><%= link_to 'Create Blog', new_blog_path %></li>
+          <li><%= link_to 'View All Blogs', blogs_path %></li>
+          <li><%= link_to 'LogOut', destroy_user_session_path , method: :delete %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li style="color:grey;">
+            <%= link_to notifications_path do %>
+              <span class="glyphicon glyphicon-inbox" style="color: grey;"></span>
+              <span class="badge"><%= notification_count%></span>
+            <%end%>
+          </li>
+          <li><%= image_tag(current_user.avatar, style:'width:50px;height:50px;border-radius:50%;') if current_user.avatar.attached?%></li>
+          <li style="color: grey;padding-top: 15px;padding-right: 15px; font-size: 18px" >
+            Logged In as: <%= current_user.email %>
+          </li>
+        </ul>
+      </div>
+</nav>
+<div class="container">
+<%if notice %> <p class="alert alert-info"><%= notice %></p><%end%>
+<%if alert %> <p class="alert alert-warning"><%= alert %></p><%end%>

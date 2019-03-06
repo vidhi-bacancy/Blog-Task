@@ -1,0 +1,53 @@
+<strong>
+	Title: <%= @blog.title%>
+</strong>
+<br>
+<strong>
+	Body: <%= @blog.body%>
+</strong>
+<br>
+<br>
+<%= button_to 'Like', blog_likes_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+
+<h2>Comments</h2>
+<% @blog.comments.each do |comment| %>
+  <p>
+  	<strong>UserName</strong>
+  	<%= comment.user.username %>
+  </p>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+ 
+
+<a href="javascript:void(0)" id="commentlink">Add Comment</a>
+
+<div id="formdisplay">
+	<h2>Add a comment:</h2>
+	<%= form_with(model: [ @blog, @blog.comments.build ], local: true) do |form| %>
+	  
+		<p>
+	    	<%= form.label :body %><br>
+	    	<%= form.text_area :body %>
+	  	</p>
+	  	<p>
+	    	<%= form.submit %>
+	  	</p>
+	<% end %>
+	<a href="javascript:void(0)" id="close">Close</a>
+</div>
+
+<script type="text/javascript">
+  $('document').ready(function(){
+      var link = document.getElementById('commentlink');
+      var formdisplay  =   document.getElementById('formdisplay');
+      var close = document.getElementById('close');  
+      link.onclick = function(){
+          formdisplay.style.display = 'block'
+      }  
+      close.onclick = function(){
+          formdisplay.style.display = 'none';
+      }});
+</script>

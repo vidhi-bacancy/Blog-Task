@@ -1,0 +1,4 @@
+<h1 align="center">Welcome <%= current_user.email %> </h1>
+<p align="center">
+	<%= image_tag(current_user.avatar, style:'width:200px;height:200px;border-radius:50%;') if current_user.avatar.attached?%>
+</p>

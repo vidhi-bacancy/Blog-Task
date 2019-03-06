@@ -1,0 +1,25 @@
+<h2 align="center">Listing all blogs</h2>
+<br>
+<table class="table table-striped" style="width:100%" align="center">
+  <tr>
+    <th>Blogger</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Actions</th>
+    <th>Likes | Comments</th>
+  </tr>
+  <% @blog.each do |blog| %>
+    <tr>
+    <td><%= blog.user.username%></td>
+      <td><%= blog.title %></td>
+      <td><%= blog.body %></td>
+      <td><%= link_to 'Show', blog_path(blog)%>
+        <%if blog.user == current_user%>
+          | <%= link_to 'Delete',blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete this blog?'}%>
+          | <%= link_to 'Edit',edit_blog_path(blog)%>
+        <%end%>
+      </td>
+      <td><%= blog.likes.count%> Like | <%= blog.comments.count%> Comments</td>
+    </tr>
+  <%end%>
+</table>
