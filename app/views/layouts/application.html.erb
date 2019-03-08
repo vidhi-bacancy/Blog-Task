@@ -7,16 +7,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
   <% if user_signed_in? %>
-    <%= render 'layouts/login'%>    
-      <%= yield %>
+    <%= render 'layouts/login'%> 
+    <%= render 'layouts/notification'%>
+    <%= yield%> 
     </div>
   <%else%>
     <%= render 'layouts/logout'%>
-      <%= yield %>
+    <%= yield %>
     </div>
   <%end%>
 </body>

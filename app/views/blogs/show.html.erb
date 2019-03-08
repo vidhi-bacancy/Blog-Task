@@ -7,8 +7,13 @@
 </strong>
 <br>
 <br>
-<%= button_to 'Like', blog_likes_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
-
+<% if !like_exist?(@blog.id) %>
+  <%= button_to 'Like', blog_likes_path(@blog), method: :post %>
+<% else %>
+  <%= button_to 'Unlike', blog_likes_path(@blog), method: :delete %>
+<% end %>
+<%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+<%#binding.pry%>
 <h2>Comments</h2>
 <% @blog.comments.each do |comment| %>
   <p>

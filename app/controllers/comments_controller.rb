@@ -7,7 +7,9 @@ class CommentsController < ApplicationController
 		# return
 		#create notification
 		@default = false
-		Notification.create(:user => @blog.user, :blog => @blog, :notifiable => @comment, :read => @default)
+		if @blog.user != current_user
+			Notification.create(:user => @blog.user, :blog => @blog, :notifiable => @comment, :read => @default)
+		end
 		redirect_to blog_path(@blog)
 	end
 

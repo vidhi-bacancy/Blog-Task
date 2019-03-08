@@ -6,9 +6,9 @@ class NotificationsController < ApplicationController
   def change
   	@notification = Notification.find(params[:id])
   	if @notification.update(read: :true)
-  		redirect_to notifications_path
+  		redirect_to blogs_path
   	else
-  		redirect_to notifications_path
+  		redirect_to blogs_path
   	end
   end
 end
