@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'notifications'
 gem 'cancancan'
+gem 'rolify'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

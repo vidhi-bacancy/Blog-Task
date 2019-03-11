@@ -1,18 +1,28 @@
-<strong>
-	Title: <%= @blog.title%>
-</strong>
-<br>
-<strong>
-	Body: <%= @blog.body%>
-</strong>
-<br>
-<br>
-<% if !like_exist?(@blog.id) %>
-  <%= button_to 'Like', blog_likes_path(@blog), method: :post %>
-<% else %>
-  <%= button_to 'Unlike', blog_likes_path(@blog), method: :delete %>
-<% end %>
-<%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+<div style="text-align: justify;">
+  <strong>
+    <div style="font-size: 3em;" align="center" ><%= @blog.title.humanize%></div>
+  </strong>
+  <br>
+  <div class="jumbotron">
+    <strong>
+      Body: <%= @blog.body%>
+    </strong>
+    <br>
+    <br>
+    <div style="float:left;">
+      <% if !like_exist?(@blog.id) %>
+        <%= button_to 'Like', blog_likes_path(@blog), method: :post , class:"btn btn-primary"%>
+      <% else %>
+        <%= button_to 'Unlike', blog_likes_path(@blog), method: :delete , class:"btn btn-primary"%>
+      <% end %>
+        <%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+    </div>
+    <%if can? :update && :destroy, @blog%>
+      <%= button_to 'Edit',edit_blog_path(@blog), class:"btn btn-primary"%>
+      <%= button_to 'Delete',blog_path(@blog), method: :delete, data: { confirm: 'Are you sure you want to delete this blog?'}, class:"btn btn-primary"%>
+    <%end%>
+  </div>
+</div>
 <%#binding.pry%>
 <h2>Comments</h2>
 <% @blog.comments.each do |comment| %>

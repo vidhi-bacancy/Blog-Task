@@ -16,11 +16,9 @@
     <%= render 'layouts/login'%> 
     <%= render 'layouts/notification'%>
     <%= yield%> 
-    </div>
   <%else%>
     <%= render 'layouts/logout'%>
     <%= yield %>
-    </div>
   <%end%>
 </body>
 </html>

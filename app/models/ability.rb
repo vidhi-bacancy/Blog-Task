@@ -28,5 +28,14 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    user ||= User.new # guest user (not logged in)
+    # binding.pry
+    if user.has_role? :blogger
+      can :manage, Blog, user_id: user.id
+      can :read, Blog
+      can :create, Blog
+    else
+      can :read, Blog
+    end
   end
 end

@@ -1,5 +1,5 @@
 <h3 align="center">Update blog here</h3>
-
+<div class="jumbotron">
 <%= form_with(model: @blog,local: true) do |form| %>
 	<% if @blog.errors.any? %>
 		<div id="error_explanation">
@@ -22,3 +22,4 @@
 	<%= form.submit 'Save' , class:"btn btn-primary btn-sm"%>
 	</p>
 <%end%>
+</div>
